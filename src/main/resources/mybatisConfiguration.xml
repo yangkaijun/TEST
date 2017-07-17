@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+ <!-- 第一种方案 -->
+ <properties resource="db.properties">
+ </properties>   
+  <!-- properties 
+  <properties>
+    <property name="driverName" value="com.mysql.jdbc.Driver" />
+    <property name="url" value="jdbc:mysql://localhost:3306/test" />
+    <property name="user" value="root" />
+    <property name="password" value=" A" />
+  </properties>
+
+  -->  
+ 
+  <settings>
+     <setting name="logImpl" value="LOG4J"/>
+ </settings>
+
+  <!-- 类的别名  简化 -->
+    <typeAliases>
+        <package name="com.yc.bean"/>
+   </typeAliases>
+   
+    <!--development:表示当前是开发环境
+    
+      work : 是工作环境   -->
+    
+	<environments default="development">
+		<environment id="development">
+			<!-- 事务管理方法: JDBC的提交和回滚功能 , commit(),  rollback()
+			 				MANAGED : 由第三方框架来管理事务
+			     -->
+			<transactionManager type="JDBC" />
+			
+			<!-- 配置数据源 -->
+			<!-- POOLED:支持数据库联接池
+				UNPOOLED : 每次联接数据库都要打开和关闭
+				JNDI : 依赖于容器( tomcat)的  java命名和目录接口
+			-->
+		 
+			<dataSource type="POOLED">
+				<property name="driver" value="${driverName}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${user}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+	  
+			
+		</environment>
+	</environments>
+	
+	<!-- 表示sql语句配置映射文件-->
+	<mappers>
+	     <mapper resource="com/yc/bean/Student.xml"/>
+	</mappers>	
+	
+</configuration>

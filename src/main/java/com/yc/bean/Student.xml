@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--   namespace:命名空间 -->
+ <mapper namespace="com.yc.bean.Student">
+ 
+ <!-- 查询学生 -->
+	<select id="selectStudent" parameterType="int" resultType="Student" >
+		select * from Student where sid=#{sid}
+	</select>
+
+<!--添加学生  -->
+
+	<insert id="insertStudent"  parameterType="Student">
+	  insert into student(sname,cname) values( #{sname},#{cname})
+	</insert> 
+	
+	 
+
+<!--修改  -->
+	<update id="updateStudent" parameterType="Student" >
+	  update student set sname=#{sname},cname=#{cname} where sid=#{sid}
+	</update>
+
+<!--删除  -->
+		
+	<delete id="deleteStudent" parameterType="Student">
+	  delete from student where sid=#{sid}
+	</delete> 
+
+	<select id="selectAll"  resultType="Student" >
+		select * from student 
+	</select>
+
+</mapper>
